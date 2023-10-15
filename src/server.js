@@ -5,10 +5,8 @@ const users = [];
 const server = http.createServer((req, res) => {
   const { method, url } = req;
 
-  console.log(`Request method: ${method} | Endpoint: ${url}`);
-
   if (url === "/users" && method === "GET") {
-    return res.end("Hello users");
+    return res.end(JSON.stringify(users));
   }
 
   if (url === "/users" && method === "POST") {
