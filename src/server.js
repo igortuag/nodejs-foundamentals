@@ -1,10 +1,10 @@
 import http from "node:http";
 
-const user = []
+const users = [];
 
 const server = http.createServer((req, res) => {
   const { method, url } = req;
-  
+
   console.log(`Request method: ${method} | Endpoint: ${url}`);
 
   if (url === "/users" && method === "GET") {
@@ -12,6 +12,12 @@ const server = http.createServer((req, res) => {
   }
 
   if (url === "/users" && method === "POST") {
+    users.push({
+      id: 1,
+      name: "John Doe",
+      email: "john@doe.com"
+    });
+
     return res.end("User created");
   }
 
