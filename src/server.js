@@ -6,7 +6,9 @@ const server = http.createServer((req, res) => {
   const { method, url } = req;
 
   if (url === "/users" && method === "GET") {
-    return res.end(JSON.stringify(users));
+    return res
+      .setHeader("Content-Type", "application/json")
+      .end(JSON.stringify(users));
   }
 
   if (url === "/users" && method === "POST") {
