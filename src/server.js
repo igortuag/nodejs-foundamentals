@@ -1,5 +1,7 @@
 import http from "node:http";
 
+const user = []
+
 const server = http.createServer((req, res) => {
   const { method, url } = req;
   
