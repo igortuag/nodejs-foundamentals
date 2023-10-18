@@ -11,3 +11,5 @@
 // 10mb/s -> first second 10000 rows
 
 // with stream its possible to start processing the data while its being uploaded
+
+process.stdin.pipe(process.stdout);
