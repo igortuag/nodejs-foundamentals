@@ -22,13 +22,13 @@ class OneToHundredStream extends Readable {
   _read() {
     const i = this.index++;
 
-    if (i > 100) {
-      this.push(null);
-    } else {
-      const buf = Buffer.from(String(i));
-
-      this.push(buf);
-    }
+    setTimeout(() => {
+      if (i > 100) {
+        this.push(null);
+      } else {
+        this.push(`${i}\n`);
+      }
+    }, 1000);
   }
 }
 
