@@ -25,7 +25,9 @@ class OneToHundredStream extends Readable {
     if (i > 100) {
       this.push(null);
     } else {
-      this.push(i);
+      const buf = Buffer.from(i);
+
+      this.push(buf);
     }
   }
 }
