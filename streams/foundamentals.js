@@ -36,11 +36,9 @@ class MultiplyByTenStream extends Writable {
   _write(chunk, encoding, callback) {
     const number = parseInt(chunk.toString());
 
-    setTimeout(() => {
-      this.emit("result", number * 10);
-      callback();
-    }, 1000);
+    console.log(number * 10);
+    callback();
   }
 }
 
-new OneToHundredStream().pipe(process.stdout);
+new OneToHundredStream().pipe(new MultiplyByTenStream());
