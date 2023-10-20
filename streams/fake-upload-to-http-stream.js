@@ -1,4 +1,4 @@
-import { Readable } from 'node:stream';
+import { Readable } from "node:stream";
 
 class OneToHundredStream extends Readable {
   index = 1;
@@ -15,3 +15,8 @@ class OneToHundredStream extends Readable {
     }, 1000);
   }
 }
+
+fetch("http://localhost:3334", {
+  method: "POST",
+  body: new OneToHundredStream()
+});
