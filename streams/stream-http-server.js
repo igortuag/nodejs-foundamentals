@@ -18,6 +18,8 @@ const server = http.createServer((req, res) => {
     buffers.push(chunk)
   }
 
+  const buffer = Buffer.concat(buffers)
+
   // return req
   //   .pipe(new InverseNumberStream())
   //   .pipe(res);
