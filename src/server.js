@@ -20,10 +20,12 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (url === "/users" && method === "POST") {
+    const { name, email } = body;
+
     users.push({
-      id: 1,
-      name: "John Doe",
-      email: "john@doe.com"
+      id: users.length + 1,
+      name,
+      email
     });
 
     return res.writeHead(201).end();
