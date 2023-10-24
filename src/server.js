@@ -1,5 +1,5 @@
 import http from "node:http";
-import { json } from "./middlewares/json";
+import { json } from "./middlewares/json.js";
 
 const users = [];
 
@@ -12,7 +12,7 @@ const server = http.createServer(async (req, res) => {
       .end(JSON.stringify(users));
   }
 
-  json(req, res);
+  await json(req, res);
 
   if (url === "/users" && method === "POST") {
     const { name, email } = req.body;
