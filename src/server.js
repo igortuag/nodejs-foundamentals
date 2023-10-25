@@ -1,12 +1,15 @@
 import http from "node:http";
 import { json } from "./middlewares/json.js";
+import { Database } from "./database.js";
 
-const users = [];
+const database = new Database();
 
 const server = http.createServer(async (req, res) => {
   const { method, url } = req;
 
   if (url === "/users" && method === "GET") {
+    const users = database.select("users");
+
     return res
       .setHeader("Content-Type", "application/json")
       .end(JSON.stringify(users));
@@ -17,11 +20,13 @@ const server = http.createServer(async (req, res) => {
   if (url === "/users" && method === "POST") {
     const { name, email } = req.body;
 
-    users.push({
+    const user = {
       id: users.length + 1,
       name,
       email
-    });
+    };
+
+    database.insert("users", user);
 
     return res.writeHead(201).end();
   }
