@@ -1,5 +1,11 @@
+import fs from "node:fs/promises";
+
 export class Database {
   #database = {};
+
+  #persist() {
+    fs.writeFile("./database.json", JSON.stringify(this.#database));
+  }
 
   select(table) {
     const data = this.#database[table] ?? [];
