@@ -1,11 +1,15 @@
-import { Database } from "./database";
+import { randomUUID } from "node:crypto";
+
+import { Database } from "./database.js";
+
+const database = new Database();
 
 export const routes = [
   {
     method: "GET",
     path: "/users",
     handle: async (req, res) => {
-      const users = await Database.select("users");
+      const users = await database.select("users");
 
       return res
         .setHeader("Content-Type", "application/json")
