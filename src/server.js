@@ -2,6 +2,12 @@ import http from "node:http";
 import { json } from "./middlewares/json.js";
 import { routes } from "./routes.js";
 
+// Query Parameters:
+// Route Params:
+// Request Body:
+
+// GET http://localhost:3333/users?search=Tuag
+
 const server = http.createServer(async (req, res) => {
   const { method, url } = req;
 
