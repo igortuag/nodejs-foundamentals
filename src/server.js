@@ -2,7 +2,7 @@ import http from "node:http";
 import { json } from "./middlewares/json.js";
 import { routes } from "./routes.js";
 
-// Query Parameters:
+// Query Parameters: URL Stateful => Filters, pagination, search
 // Route Params:
 // Request Body:
 
