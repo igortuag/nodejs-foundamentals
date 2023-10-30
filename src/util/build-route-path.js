@@ -4,5 +4,5 @@ export function buildRoutePath(path) {
 
   return path.replace(routeParamsRegex, (_, paramName) => {
     return `(?<${paramName}>[a-zA-Z0-9-]*)`;
-  }
+  });
 }
