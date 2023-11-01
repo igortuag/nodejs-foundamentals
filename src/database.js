@@ -39,5 +39,11 @@ export class Database {
 
   delete(table, id) {
     const rowIndex = this.#database[table].findIndex((row) => row.id === id);
+
+    if (rowIndex === -1) {
+      throw new Error("Row not found");
+    }
+
+    this.#database[table].splice(rowIndex, 1);
   }
 }
