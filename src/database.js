@@ -45,5 +45,6 @@ export class Database {
     }
 
     this.#database[table].splice(rowIndex, 1);
+    this.#persist();
   }
 }
