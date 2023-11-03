@@ -1,6 +1,7 @@
 import http from "node:http";
 import { json } from "./middlewares/json.js";
 import { routes } from "./routes.js";
+import extractQueryParams from "./util/extract-query-params.js";
 
 // Query Parameters: URL Stateful => Filters, pagination, search
 // Route Params: Identify resources (GET, PUT, DELETE)
@@ -21,9 +22,10 @@ const server = http.createServer(async (req, res) => {
   if (route) {
     const routeParams = req.url.match(route.path);
 
-    req.params = {
-      ...routeParams.groups
-    };
+    const { query, ...params } = routeParams.groups;
+
+    req.params = params;
+    req.query = extractQueryParams(query);
 
     return route.handle(req, res);
   }
