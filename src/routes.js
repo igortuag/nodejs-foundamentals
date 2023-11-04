@@ -10,7 +10,17 @@ export const routes = [
     method: "GET",
     path: buildRoutePath("/users"),
     handle: async (req, res) => {
-      const users = await database.select("users");
+      const { search } = req.query;
+
+      const users = await database.select(
+        "users",
+        search
+          ? {
+              name: search,
+              email: search
+            }
+          : null
+      );
 
       return res
         .setHeader("Content-Type", "application/json")
