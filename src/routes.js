@@ -12,10 +12,15 @@ export const routes = [
     handle: async (req, res) => {
       const { search } = req.query;
 
-      const users = await database.select("users", {
-        name: search,
-        email: search
-      });
+      const users = await database.select(
+        "users",
+        search
+          ? {
+              name: search,
+              email: search
+            }
+          : null
+      );
 
       return res
         .setHeader("Content-Type", "application/json")
