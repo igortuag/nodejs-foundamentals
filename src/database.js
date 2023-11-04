@@ -22,11 +22,11 @@ export class Database {
   select(table, search) {
     let data = this.#database[table] ?? [];
 
-    if (search) { 
+    if (search) {
       data = data.filter((row) => {
-        return Object.keys(search).every((key) => {
-          return row[key] === search[key];
-        });
+        return Object.entries(search).some(([key, value]) =>
+          row[key].includes(value)
+        );
       });
     }
 
